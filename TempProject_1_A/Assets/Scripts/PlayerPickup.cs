@@ -52,11 +52,11 @@ public class PlayerPickup : MonoBehaviour
 
         ShowGuide();
 
-        if (targetItem == null ) return;
+        if (targetItem == null && targetDoor == null && targetNPC == null) return;
 
         Keyboard keyboard = Keyboard.current;
 
-        if( keyboard == null && targetDoor == null && targetNPC == null) return;
+        if( keyboard == null) return;
 
         if (keyboard.eKey.wasPressedThisFrame)
         {
