@@ -50,6 +50,8 @@ public class PlayerPickup : MonoBehaviour
         targetDoor = FindClosestDoor();
         targetNPC = FindClosestNPC();
 
+        ShowGuide();
+
         if (targetItem == null ) return;
 
         Keyboard keyboard = Keyboard.current;
@@ -175,7 +177,7 @@ public class PlayerPickup : MonoBehaviour
     }
 
 
-    private void showGuide()
+    private void ShowGuide()
     {
         if(targetItem != null)
         {

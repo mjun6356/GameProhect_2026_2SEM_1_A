@@ -24,14 +24,14 @@ public class Door : MonoBehaviour
 
         if (isOpen)
         {
-            targetRotation = closedRotation;
+            targetRotation = openRotation;
         }
         else
         {
             targetRotation = closedRotation;
         }
 
-        transform.localRotation = Quaternion.Lerp(transform.localRotation, openRotation, openSpeed * Time.deltaTime);
+        transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRotation, openSpeed * Time.deltaTime);
     }
 
     public void Interact()

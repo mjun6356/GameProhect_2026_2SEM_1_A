@@ -12,6 +12,15 @@ public class InteractionUI : MonoBehaviour
 
     private Coroutine dialogueRoutine;
 
+    
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        HideGuide();
+        dialoguePanel.SetActive(false) ;
+    }
+
     public void ShowGuide(string message)
     {
         guideText.gameObject.SetActive(true);
@@ -32,14 +41,13 @@ public class InteractionUI : MonoBehaviour
 
         yield return new WaitForSeconds(dialogueDuration);
 
-        dialoguePanel.SetActive(false );
-
+        dialoguePanel.SetActive(false);
         dialogueRoutine = null;
     }
 
-    public void ShowDialogue(string npcName ,string message)
+    public void ShowDialogue(string npcName, string message)
     {
-        if ( dialogueRoutine != null)
+        if (dialogueRoutine != null)
         {
             StopCoroutine(dialogueRoutine);
         }
@@ -47,16 +55,5 @@ public class InteractionUI : MonoBehaviour
         dialogueRoutine = StartCoroutine(DialogueRoutine(npcName, message));
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        HideGuide();
-        dialoguePanel.SetActive(false ) ;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
