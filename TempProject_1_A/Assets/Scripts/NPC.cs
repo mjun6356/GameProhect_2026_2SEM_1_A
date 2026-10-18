@@ -24,15 +24,5 @@ public class NPC : MonoBehaviour
     {
         return "[E] " + npcName + " 와 대화 하기 ";
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

@@ -56,7 +56,7 @@ public class PlayerPickup : MonoBehaviour
 
         Keyboard keyboard = Keyboard.current;
 
-        if( keyboard == null ) return;
+        if( keyboard == null && targetDoor == null && targetNPC == null) return;
 
         if (keyboard.eKey.wasPressedThisFrame)
         {
@@ -199,7 +199,7 @@ public class PlayerPickup : MonoBehaviour
 
     private void Interact()
     {
-        if (targetItem != null)
+        if(targetItem != null)
         {
             StartCoroutine(PickupAnimation());
         }
@@ -209,7 +209,7 @@ public class PlayerPickup : MonoBehaviour
         }
         else if (targetNPC != null)
         {
-            interactionUI.ShowDialogue(targetNPC.GetNPCName(), targetNPC.GetMessage());
+            interactionUI.ShowDialogue(targetNPC.GetGuideText(), targetNPC.GetMessage());
         }
         
     }
