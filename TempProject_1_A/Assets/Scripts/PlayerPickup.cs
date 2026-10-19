@@ -21,6 +21,8 @@ public class PlayerPickup : MonoBehaviour
 
     [SerializeField] private InteractionUI interactionUI;
 
+    
+
     private PickupItem targetItem;
 
     private Door targetDoor;
@@ -33,7 +35,7 @@ public class PlayerPickup : MonoBehaviour
 
 
 
-
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
