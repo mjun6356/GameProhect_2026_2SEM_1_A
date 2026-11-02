@@ -8,6 +8,7 @@ public enum PlayerState
     Nomal,
     Pickup,
 
+    inventory
 }
 
 public class Playercontroller : MonoBehaviour
@@ -159,6 +160,9 @@ public class Playercontroller : MonoBehaviour
 
     }
 
-    
+    public bool IsNormalState()
+    {
+        return currentState == PlayerState.Nomal;
+    }
 
 }
