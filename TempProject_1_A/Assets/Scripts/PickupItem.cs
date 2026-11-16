@@ -26,12 +26,14 @@ public class PickupItem : MonoBehaviour
 
     private SimpleInventory inventory;
 
+    private AchievementManager achievementManager;
     private Vector3 startPosition;
 
     public void Awake()
     {
         questManager = FindFirstObjectByType<QuestManager>();
         inventory = FindFirstObjectByType<SimpleInventory>();
+        achievementManager = FindAnyObjectByType<AchievementManager>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -67,7 +69,17 @@ public class PickupItem : MonoBehaviour
 
 
         Debug.Log(itemName + ": " + amount + "개 획득");
-        questManager.AddQuestItem(itemName, amount);
+        
+        if (questManager != null)
+        {
+            questManager.AddQuestItem(itemName, amount);
+        }
+
+        if (achievementManager != null)
+        {
+            achievementManager.ItemCollected(amount);
+        }
+
         Destroy(gameObject);
 
         

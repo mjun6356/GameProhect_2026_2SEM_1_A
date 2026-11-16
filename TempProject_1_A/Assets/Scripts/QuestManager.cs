@@ -7,12 +7,14 @@ public class QuestManager : MonoBehaviour
 
     private Quest currentQuest;
 
+    private AchievementManager achievementManager;
 
     private SimpleInventory inventory;
 
     private void Awake()
     {
         inventory = FindFirstObjectByType<SimpleInventory>();
+        achievementManager = FindAnyObjectByType<AchievementManager>();
     }
 
 
@@ -119,6 +121,13 @@ public class QuestManager : MonoBehaviour
         currentQuest.state = QuestState.Completed;
         Debug.Log(currentQuest.questName + "퀘스트 완료!");
         UpdateQuestText();
+
+
+        if (achievementManager != null)
+        {
+            achievementManager.QuestCompleted();
+        }
+
     }
 
 

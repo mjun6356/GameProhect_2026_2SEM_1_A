@@ -28,10 +28,14 @@ public class SimpleInventory : MonoBehaviour
 
     private bool isOpen;
 
+    private AchievementManager achievementManager;
+
+
     private void Awake()
     {
         playercontroller = GetComponent<Playercontroller>();
         PlayerPickup = GetComponent<PlayerPickup>();
+        achievementManager = FindAnyObjectByType<AchievementManager>();
 
         if (Camera.main != null )
         {
@@ -114,6 +118,18 @@ public class SimpleInventory : MonoBehaviour
                 slotText[i].text = "비어 있음";
             }
         } 
+
+        if (selectedIndex >= 0 && selectedIndex < items.Count)
+        {
+            selectedItemText.text = "선택 : " + items[selectedIndex].itemName;
+            descriptionText.text = items[selectedIndex].description;
+        }
+        else
+        {
+            selectedItemText.text = "아이템을 선택하세요";
+            descriptionText.text = "슬롯을 클릭하면 설명이 표시 됩니다.";
+        }
+
     }
 
     public bool AddIteam(string itemName, int amount, string description)
@@ -200,6 +216,14 @@ public class SimpleInventory : MonoBehaviour
         }
 
         playerHealth.Heal(HealAmount);
+
+        if (achievementManager != null)
+        {
+            achievementManager.ItemUsed(item.itemName);
+        }
+
+
+
         RemoveItem(item.itemName, 1);
     }
 
@@ -207,8 +231,18 @@ public class SimpleInventory : MonoBehaviour
     {
         if (selectedIndex < 0 || selectedIndex >= items.Count) return;
 
+
+
+
         string itemName = items[selectedIndex].itemName;
         RemoveItem(itemName, 1);
+
+
+        if (achievementManager != null)
+        {
+            achievementManager.ItemDropped();
+        }
+
     }
 
     public int GetItemAmount(string itemName)
