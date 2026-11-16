@@ -9,7 +9,14 @@ public class PickupItem : MonoBehaviour
 
     [SerializeField] private int amount = 1;
 
+    [SerializeField] private string description = "아이템 설명이 없습니다.";
+
     [SerializeField] QuestManager questManager;
+
+
+    
+
+
 
     [Header("화면 연출")]
 
@@ -53,7 +60,7 @@ public class PickupItem : MonoBehaviour
         }
 
 
-        if (inventory.AddIteam(itemName, amount) == false)
+        if (inventory.AddIteam(itemName, amount, description) == false)
         {
             return;
         }
